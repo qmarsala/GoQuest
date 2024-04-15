@@ -3,7 +3,36 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println("hello world")
+	p := createNewCharacter()
+	fmt.Println("hello", p.Name)
+}
+
+func createNewCharacter() Player {
+	fmt.Println("Name:")
+	var name string
+	fmt.Scanln(&name)
+
+	fmt.Println("Description:")
+	var description string
+	fmt.Scanln(&description)
+
+	fmt.Println("Motivation:")
+	var motivation string
+	fmt.Scanln(&motivation)
+
+	fmt.Println("Catalyst:")
+	var catalyst string
+	fmt.Scanln(&catalyst)
+
+	p := Player{
+		Name:        name,
+		Description: description,
+		Motivation:  motivation,
+		Catalyst:    catalyst,
+		Skills:      [28]Skill{},
+		Abilities:   [3]Ability{},
+	}
+	return p
 }
 
 type Ability struct {
