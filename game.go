@@ -5,7 +5,7 @@ import (
 	"os"
 )
 
-const gamestateSaveFilePath string = "./gamestate.json"
+const gamestateSaveFilePath string = "./data/gamestate.json"
 
 type Phase int
 
