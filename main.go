@@ -1,65 +1,38 @@
 package main
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strings"
+)
 
 func main() {
-	p := createNewCharacter()
-	fmt.Println("hello", p.Name)
+	c := createNewCharacter()
+	SaveCharacter(c)
 }
 
-func createNewCharacter() Player {
-	fmt.Println("Name:")
-	var name string
-	fmt.Scanln(&name)
+func createNewCharacter() Character {
+	name := readString("Name:")
+	description := readString("Description:")
+	motivation := readString("Motivation:")
+	catalyst := readString("Catalyst:")
 
-	fmt.Println("Description:")
-	var description string
-	fmt.Scanln(&description)
-
-	fmt.Println("Motivation:")
-	var motivation string
-	fmt.Scanln(&motivation)
-
-	fmt.Println("Catalyst:")
-	var catalyst string
-	fmt.Scanln(&catalyst)
-
-	p := Player{
+	p := Character{
 		Name:        name,
 		Description: description,
 		Motivation:  motivation,
 		Catalyst:    catalyst,
-		Skills:      [28]Skill{},
-		Abilities:   [3]Ability{},
+		Skills:      map[string]Skill{},
+		Abilities:   map[string]Ability{},
 	}
 	return p
 }
 
-type Ability struct {
-	Name        string
-	Description string
-	Score       int
-	Modifier    int
-}
-
-type Skill struct {
-	Name        string
-	Description string
-	Score       int
-	Modifier    int
-}
-
-type Background struct {
-	Name        string
-	Description string
-	SkillBoosts map[string]int
-}
-
-type Player struct {
-	Name        string
-	Description string
-	Motivation  string
-	Catalyst    string
-	Skills      [28]Skill
-	Abilities   [3]Ability
+func readString(prompt string) string {
+	reader := bufio.NewReader(os.Stdin)
+	fmt.Print(prompt)
+	text, _ := reader.ReadString('\n')
+	text = strings.TrimSpace(text)
+	return text
 }
