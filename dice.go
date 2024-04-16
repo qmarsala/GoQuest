@@ -6,13 +6,13 @@ type Dice struct {
 	Sides int
 }
 
-func (d Dice) Roll() int {
+func (d Dice) roll() int {
 	return rand.IntN(d.Sides) + 1
 }
 
-func (d Dice) RollN(dieCount int) (total int, rolls []int) {
+func (d Dice) rollN(dieCount int) (total int, rolls []int) {
 	for i := 0; i < dieCount; i++ {
-		roll := d.Roll()
+		roll := d.roll()
 		rolls = append(rolls, roll)
 		total += roll
 	}
