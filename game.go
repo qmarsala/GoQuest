@@ -7,8 +7,17 @@ import (
 
 const gamestateSaveFilePath string = "./gamestate.json"
 
+type Phase int
+
+const (
+	open     Phase = 0
+	quest    Phase = 1
+	downtime Phase = 2
+)
+
 type GameState struct {
 	Character Character
+	Phase     Phase
 }
 
 func load() GameState {
