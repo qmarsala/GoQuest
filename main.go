@@ -8,21 +8,30 @@ import (
 )
 
 func main() {
-	d6 := Dice{6}
-	total, rolls := d6.rollN(3)
-	fmt.Println(total)
-	fmt.Println(rolls)
+	gamestate := GameState{}
+inputLoop:
+	for {
+		choice := readString("1) New Game\n2) Load Game\nQ) Quit\n")
 
-	d4 := Dice{4}
-	roll := d4.roll()
-	fmt.Println(roll)
+		switch strings.ToLower(choice) {
+		case "1":
+			name := readString("Name:")
+			description := readString("Description:")
+			motivation := readString("Motivation:")
+			catalyst := readString("Catalyst:")
+			c := createNewCharacter(name, description, motivation, catalyst)
+			gamestate = GameState{Character: c}
+			save(gamestate)
+			break inputLoop
+		case "2":
+			gamestate = load()
+			break inputLoop
+		case "q":
+			os.Exit(0)
+		}
+	}
 
-	name := readString("Name:")
-	description := readString("Description:")
-	motivation := readString("Motivation:")
-	catalyst := readString("Catalyst:")
-	c := createNewCharacter(name, description, motivation, catalyst)
-	saveCharacter(c)
+	fmt.Println(gamestate)
 }
 
 func readString(prompt string) string {
