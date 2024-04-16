@@ -31,7 +31,11 @@ inputLoop:
 		}
 	}
 
-	fmt.Println(gamestate)
+gameLoop:
+	for {
+		fmt.Println(gamestate)
+		break gameLoop
+	}
 }
 
 func readString(prompt string) string {
