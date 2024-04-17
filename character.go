@@ -6,15 +6,14 @@ type Background struct {
 	SkillBoosts map[string]int
 }
 
-type ActiveSlot struct {
-	Name interface{}
-	Item interface{}
+type Item struct {
+	Name     string
+	Quantity int
 }
 
-type InventorySlot struct {
-	Name     interface{}
-	Item     interface{}
-	Quantity int
+type ActiveSlot struct {
+	Type string
+	Item Item
 }
 
 type Character struct {
@@ -26,7 +25,7 @@ type Character struct {
 	Skills      map[string]Skill
 	Abilities   map[string]Ability
 	ActiveSlots [6]ActiveSlot
-	Inventory   [28]InventorySlot
+	Inventory   [28]Item
 }
 
 func createNewCharacter(name string, description string, motivation string, catalyst string) Character {
@@ -39,7 +38,7 @@ func createNewCharacter(name string, description string, motivation string, cata
 		Skills:      defaultSkills,
 		Abilities:   defaultAbilities,
 		ActiveSlots: [6]ActiveSlot{},
-		Inventory:   [28]InventorySlot{},
+		Inventory:   [28]Item{},
 	}
 	return newCharacter
 }
