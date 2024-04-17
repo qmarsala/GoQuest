@@ -31,17 +31,47 @@ inputLoop:
 		}
 	}
 
-	world := initializeWorld()
+	//world := initializeWorld()
 
 gameLoop:
 	for {
-		fmt.Println(gamestate)
-		world.Print()
+		// during open play
+		// 	character can perform up to 3 actions (per location visited)
+		// 	and any amount of travel/npc conversations
+		// during quest play
+		//	 character is working towards an objective
+		// during downtime
+		//	character can chose a used skill to level up
+		//  and retry any failed actions during open play
+
+		switch {
+		case gamestate.Phase == open:
+			gamestate.Phase = handleOpenPlay()
+		case gamestate.Phase == quest:
+			gamestate.Phase = handleQuestPlay()
+		case gamestate.Phase == downtime:
+			gamestate.Phase = handleDowntime()
+		default:
+			gamestate.Phase = handleOpenPlay()
+		}
 		break gameLoop
 	}
+	save(gamestate)
+}
 
-	d := world.CalculateDistance("Lumbridge", "Falador")
-	fmt.Printf("Distance: %d", d)
+func handleOpenPlay() Phase {
+	fmt.Println("open play")
+	return quest
+}
+
+func handleQuestPlay() Phase {
+	fmt.Println("questing")
+	return downtime
+}
+
+func handleDowntime() Phase {
+	fmt.Println("downtime")
+	return open
 }
 
 func readString(prompt string) string {
