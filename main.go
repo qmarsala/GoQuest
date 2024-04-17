@@ -31,9 +31,11 @@ inputLoop:
 		}
 	}
 
+	world := initializeWorld()
 gameLoop:
 	for {
 		fmt.Println(gamestate)
+		world.Print()
 		break gameLoop
 	}
 }
