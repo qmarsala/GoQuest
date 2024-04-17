@@ -32,12 +32,16 @@ inputLoop:
 	}
 
 	world := initializeWorld()
+
 gameLoop:
 	for {
 		fmt.Println(gamestate)
 		world.Print()
 		break gameLoop
 	}
+
+	d := world.CalculateDistance("Lumbridge", "Falador")
+	fmt.Printf("Distance: %d", d)
 }
 
 func readString(prompt string) string {
