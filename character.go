@@ -22,8 +22,8 @@ type Character struct {
 	Motivation  string
 	Catalyst    string
 	Background  Background
-	Skills      map[string]Skill
-	Abilities   map[string]Ability
+	Skills      []Skill
+	Abilities   []Ability
 	ActiveSlots [6]ActiveSlot
 	Inventory   [28]Item
 }

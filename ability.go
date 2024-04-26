@@ -7,20 +7,20 @@ type Ability struct {
 	Modifier    int
 }
 
-var defaultAbilities = map[string]Ability{
-	"Agility": {
+var defaultAbilities = []Ability{
+	{
 		Name:        "Agility",
 		Description: "",
 		Score:       1,
 		Modifier:    0,
 	},
-	"Strength": {
+	{
 		Name:        "Strength",
 		Description: "",
 		Score:       1,
 		Modifier:    0,
 	},
-	"Intellect": {
+	{
 		Name:        "Intellect",
 		Description: "",
 		Score:       1,
