@@ -38,11 +38,26 @@ gameLoop:
 		// during open play
 		// 	character can perform up to 3 actions (per location visited)
 		// 	and any amount of travel/npc conversations
-		// during quest play
+		//  actions:
+		//   - train x skill
+		//   - travel
+		//   - talk to npcs
+		//   - shop
+		//   - interact
+		//   - gather/craft
+		//   - ?
+		// during quest play (all open play actions are available)
 		//	 character is working towards an objective
+		//   actions:
+		//    - view quest log
+		//    - talk to npc about the quest
+		//    - ?
 		// during downtime
 		//	character can chose a used skill to level up
 		//  and retry any failed actions during open play
+		//   actions:
+		//     - learn from failures
+		//     - level up
 
 		switch {
 		case gamestate.Phase == open:
