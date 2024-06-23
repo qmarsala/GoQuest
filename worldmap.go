@@ -27,6 +27,7 @@ func (w *World) addPath(src Location, dest Location, distance int) {
 		w.Locations[dest.Name] = []Path{}
 	}
 	w.Locations[src.Name] = append(w.Locations[src.Name], Path{Destination: dest, Distance: distance})
+	w.Locations[dest.Name] = append(w.Locations[dest.Name], Path{Destination: src, Distance: distance})
 }
 
 func (w *World) Print() {
@@ -93,7 +94,5 @@ func initializeWorld() World {
 	}
 	world.addPath(lumbridge, varrock, 3)
 	world.addPath(lumbridge, falador, 4)
-	world.addPath(varrock, lumbridge, 3)
-	world.addPath(varrock, falador, 2)
 	return world
 }
